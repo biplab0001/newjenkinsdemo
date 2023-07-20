@@ -1,0 +1,32 @@
+pipeline
+{
+	agent any
+	
+	stages
+	{
+	stage('Install apache')
+	{
+		steps
+		{
+			sh 'sudo apt install apache2 -y'
+		}
+		
+	}
+	stage('Fatch the code')
+	{
+		steps
+		{
+			git branch: 'main', url: 'https://github.com/biplab0001/newjenkinsdemo.git'
+		}
+		
+	}
+	stage('deploy the code')
+	{
+		steps
+		{
+			sh 'sudo cp -R * /var/www/html/'
+		}
+		
+	}
+	}
+}
